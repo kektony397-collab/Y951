@@ -1,12 +1,17 @@
 
-const CACHE_NAME = 'repido-meter-cache-v1';
-// Note: Icon files referenced in manifest.json should also be added here if available.
+const CACHE_NAME = 'repido-meter-cache-v2'; // Bump version to trigger update
 const URLS_TO_CACHE = [
   '/',
   '/index.html',
+  '/manifest.json',
   '/index.tsx', // Caching the main script
+  '/icons/icon-72.png',
+  '/icons/icon-96.png',
+  '/icons/icon-128.png',
+  '/icons/icon-144.png',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
+  '/icons/shortcut-icon.png',
   'https://cdn.tailwindcss.com',
   'https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:wght@400;700&display=swap',
 ];
@@ -23,10 +28,10 @@ self.addEventListener('install', event => {
         console.error('Failed to cache app shell:', err);
       })
   );
+  self.skipWaiting(); // Ensure new service worker activates immediately
 });
 
 // Fetch event: serves requests from the cache first, falling back to the network.
-// Updates the cache with new network responses.
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
@@ -50,7 +55,6 @@ self.addEventListener('fetch', event => {
             caches.open(CACHE_NAME)
               .then(cache => {
                 // Cache the new response for future requests.
-                // We use put() instead of add() as we already have the response.
                 cache.put(event.request, responseToCache);
               });
 
@@ -58,7 +62,10 @@ self.addEventListener('fetch', event => {
           }
         ).catch(error => {
           console.error('Fetching failed:', error);
-          // You could return a custom offline page here if you had one cached.
+          // For navigation requests, return the cached index.html as a fallback.
+          if (event.request.mode === 'navigate') {
+            return caches.match('/');
+          }
         });
       })
   );
@@ -78,6 +85,6 @@ self.addEventListener('activate', event => {
           }
         })
       );
-    })
+    }).then(() => self.clients.claim()) // Take control of uncontrolled clients
   );
 });

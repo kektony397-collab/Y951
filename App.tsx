@@ -22,6 +22,19 @@ const App: React.FC = () => {
   useEffect(() => {
     setIsPipAvailable('documentPictureInPicture' in window);
   }, []);
+  
+  useEffect(() => {
+    // Handle PWA shortcut action
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('action') === 'new_ride') {
+      dispatch({ type: 'RESET_RIDE' });
+      // Optional: remove the query param from URL without reloading
+      if (window.history.replaceState) {
+        const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        window.history.replaceState({path: cleanUrl}, '', cleanUrl);
+      }
+    }
+  }, []); // Run only once on component mount
 
   // Custom hooks for side effects
   useRide(dispatch, state.phase);

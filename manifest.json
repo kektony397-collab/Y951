@@ -4,11 +4,34 @@
   "short_name": "RepidoMeter",
   "description": "A web-based rickshaw/taxi fare meter that uses your device's GPS to track distance and time, calculating the fare based on a configurable rate card.",
   "start_url": ".",
+  "scope": "/",
+  "lang": "en",
   "display": "standalone",
   "background_color": "#111827",
   "theme_color": "#111827",
   "orientation": "portrait-primary",
+  "categories": ["navigation", "travel", "utilities"],
   "icons": [
+    {
+      "src": "/icons/icon-72.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "/icons/icon-96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/icons/icon-128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "/icons/icon-144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
     {
       "src": "/icons/icon-192.png",
       "type": "image/png",
@@ -20,6 +43,31 @@
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Start New Ride",
+      "short_name": "New Ride",
+      "description": "Reset the meter and start a new ride",
+      "url": "/?action=new_ride",
+      "icons": [{ "src": "/icons/shortcut-icon.png", "sizes": "96x96" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/screenshot1.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Idle Meter View"
+    },
+    {
+      "src": "/screenshots/screenshot2.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Ride in Progress"
     }
   ]
 }
