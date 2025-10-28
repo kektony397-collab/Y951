@@ -1,0 +1,7 @@
+{
+  "name": "Copy of Copy of Copy of Repido Meter77",
+  "description": "A web-based rickshaw/taxi fare meter that uses your device's GPS to track distance and time, calculating the fare based on a configurable rate card.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

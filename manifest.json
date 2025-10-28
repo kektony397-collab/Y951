@@ -1,0 +1,25 @@
+
+{
+  "name": "Repido Meter",
+  "short_name": "RepidoMeter",
+  "description": "A web-based rickshaw/taxi fare meter that uses your device's GPS to track distance and time, calculating the fare based on a configurable rate card.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#111827",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}
